@@ -1,0 +1,163 @@
+﻿<Page x:Class="TeamProjectManagementSystem.View.TeamView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeamView">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
+                <MenuItem Header="팀" />
+                <MenuItem Header="할 일" />
+                <MenuItem Header="채팅" />
+                <MenuItem Header="공모전" />
+                <MenuItem Header="로그아웃" />
+            </Menu>
+        </DockPanel>
+        <Grid >
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Left" Width="100" Background="#F5F1F0">
+                    <StackPanel Height="200">
+                        <TextBlock Text="홈" Margin="0,20,0,0" TextAlignment="Center" FontSize="16"/>
+                        <TextBlock Text="게시판" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
+                        <TextBlock Text="할 일" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+
+                </DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="20">
+                        <TextBlock 
+                            Text="프로젝트 설명" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Margin="10"
+                                   />
+                        <TextBlock 
+                            Text="김은화 교수님 프로젝트 입니다. 팀 프로젝트와 공모전을 체계적으로 관리할 수 있는 프로그램입니다." 
+                            
+                            TextWrapping="WrapWithOverflow" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            TextAlignment="Center"
+                            
+                            />
+                        <Button 
+                            Content="수정"
+                            Margin="250,50,10,0"/>
+                    </StackPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="0" Margin="20">
+                        <TextBlock 
+                            DockPanel.Dock="Top"
+                            Text="간단 메모" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                                   />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox HorizontalAlignment="Left"  Margin="30,18,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="170" Height="18"/>
+                            <Button Content="Button"  Margin="215,18,30.4,0" VerticalAlignment="Top" Height="19" />
+                            <StackPanel Grid.Row="1">
+                                <Border Margin="10"
+                                    Height="50"
+                                    CornerRadius="5"
+                                    Background="#FFF9F7F6" 
+                                    BorderBrush="LightGray" 
+                                    BorderThickness="1">
+                                    <Grid>
+                                        <TextBlock HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top"/>
+                                        <TextBlock HorizontalAlignment="Left"  Margin="50,5,0,0" TextWrapping="Wrap" Text="2021-11-25" VerticalAlignment="Top" />
+                                        <TextBlock HorizontalAlignment="Left" Margin="5,22,0,0" TextWrapping="Wrap" Text="게시판에 새 글이 올라왔습니다." VerticalAlignment="Top" />
+                                        <Button Content="X" HorizontalAlignment="Left"  Margin="261,3,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+
+                                    </Grid>
+                                </Border>
+
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="20">
+                        <TextBlock 
+                            Text="진행도"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Margin="10"/>
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="스토리보드, 디자인" VerticalAlignment="Top" />
+                            <ProgressBar HorizontalAlignment="Left" Margin="5,20,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                            <TextBlock HorizontalAlignment="Left" Margin="230,20,0,0" TextWrapping="Wrap" Text="55%" VerticalAlignment="Top"/>
+
+                        </Grid>
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="스토리보드, 디자인" VerticalAlignment="Top" />
+                            <ProgressBar HorizontalAlignment="Left" Margin="5,20,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                            <TextBlock HorizontalAlignment="Left" Margin="230,20,0,0" TextWrapping="Wrap" Text="55%" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </StackPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="1" Margin="20">
+                        <TextBlock 
+                            DockPanel.Dock="Top"
+                            Text="간단 메모" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                                   />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <DatePicker HorizontalAlignment="Left" Margin="20,18,0,0" VerticalAlignment="Top" Width="92">
+                                <DatePicker.BorderBrush>
+                                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                        <GradientStop Color="#FFF9F7F6" Offset="0"/>
+                                        <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
+                                        <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
+                                        <GradientStop Color="#FFD3CDCB" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </DatePicker.BorderBrush>
+                            </DatePicker>
+
+                            <TextBox Height="23" HorizontalAlignment="Left"  Margin="117,18,0,0" TextWrapping="Wrap" Text="일정 입력" VerticalAlignment="Top" Width="123" />
+                            <Button Height="23" Content="추가"  Margin="245,18,30.6,0" VerticalAlignment="Top" />
+                            <StackPanel Grid.Row="1">
+                                <Grid  Margin="20,0,20,0">
+                                    <TextBlock HorizontalAlignment="Left"   TextWrapping="Wrap" Text="2021-11-27"/>
+                                    <TextBlock Margin="70,0,0,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="자료조사"/>
+                                    <Button HorizontalAlignment="Right" Margin="0,0,10,0" Content="X" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+                                </Grid>
+                                <Grid  Margin="20,0,20,0">
+                                    <TextBlock HorizontalAlignment="Left"   TextWrapping="Wrap" Text="2021-11-27"/>
+                                    <TextBlock Margin="70,0,0,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="자료조사"/>
+                                    <Button HorizontalAlignment="Right" Margin="0,0,10,0" Content="X" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+                                </Grid>
+                            </StackPanel>
+
+                        </Grid>
+                    </DockPanel>
+
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+
+</Page>
