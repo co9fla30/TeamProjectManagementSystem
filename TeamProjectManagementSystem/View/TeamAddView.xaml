@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="Microsoft YaHei UI Light" 
+             >
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="auto"/>
         <DockPanel DockPanel.Dock="Left" Width="auto"/>
@@ -20,7 +22,7 @@
                     <TextBox Margin="30,5,30,0" Height="40"/>
                     <TextBlock Text="팀원" Margin="30,10,30,0"></TextBlock>
                     <TextBox Margin="30,5,300,0"/>
-                    <Button Content="추가" Margin="320,20,30,0" Background="#FFF1EBE5"/>
+                    <Button Content="추가" Margin="320,20,30,0" Style="{StaticResource buttonStyle}"/>
                     
                 </StackPanel>
             </StackPanel>

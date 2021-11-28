@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1">
+      Title="Page1"
+      FontFamily="Microsoft YaHei UI Light" 
+      >
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="auto"/>
@@ -14,13 +16,14 @@
         <DockPanel DockPanel.Dock="Right" Width="auto"/>
         <DockPanel >
             <StackPanel Width="250" Height="300">
-                <TextBlock Text="Sign in" Margin="30,20,30,20" Foreground="#BDBDBC" FontSize="24" TextAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
+                <TextBlock Text="Sign in" Margin="30,20,30,20" Foreground="#BDBDBC" FontSize="24" TextAlignment="Center" FontWeight="Bold" />
                 <StackPanel Height="210" >
                     <TextBlock Text="ID" Margin="30,10,30,0" ></TextBlock>
                     <TextBox Margin="30,10,30,0"/>
                     <TextBlock Text="PassWord" Margin="30,10,30,0"></TextBlock>
-                    <TextBox Margin="30,10,30,0"/>
-                    <Button Content="로그인" Margin="30,20,30,0" Background="#FFF1EBE5"/>
+                    <PasswordBox  Margin="30,10,30,0" PasswordChar="*"/>
+
+                    <Button Content="로그인" Margin="30,20,30,0" Style="{StaticResource buttonStyle}"/>
                     <TextBlock Text="회원가입" Margin="30,10,30,0" TextAlignment="Right" FontFamily="Segoe UI Symbol"></TextBlock>
                 </StackPanel>
             </StackPanel>

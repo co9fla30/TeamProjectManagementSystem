@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:TeamProjectManagementSystem"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FFF1EBE5" />
+            <Setter Property="BorderBrush" Value="#FFE7D8D4"/>
+        </Style>
     </Application.Resources>
 </Application>

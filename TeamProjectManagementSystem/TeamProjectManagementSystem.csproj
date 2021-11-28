@@ -58,17 +58,35 @@
     <Compile Include="View\JoinView.xaml.cs">
       <DependentUpon>JoinView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPageView.xaml.cs">
-      <DependentUpon>MainPageView.xaml</DependentUpon>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainTeamView.xaml.cs">
+      <DependentUpon>MainTeamView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyToDoListView.xaml.cs">
+      <DependentUpon>MyToDoListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TeamAddView.xaml.cs">
       <DependentUpon>TeamAddView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TeamBoardAddView.xaml.cs">
+      <DependentUpon>TeamBoardAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamBoardDetailView.xaml.cs">
+      <DependentUpon>TeamBoardDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamBoardView.xaml.cs">
+      <DependentUpon>TeamBoardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TeamListView.xaml.cs">
       <DependentUpon>TeamListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamToDoListView.xaml.cs">
+      <DependentUpon>TeamToDoListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TeamView.xaml.cs">
       <DependentUpon>TeamView.xaml</DependentUpon>
@@ -89,7 +107,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainPageView.xaml">
+    <Page Include="View\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,11 +115,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MainTeamView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyToDoListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TeamAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\TeamBoardAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamBoardDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamBoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TeamListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamToDoListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResourceDictionary\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
