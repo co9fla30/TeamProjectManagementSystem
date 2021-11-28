@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContestDetailView.xaml.cs">
+      <DependentUpon>ContestDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContestListView.xaml.cs">
+      <DependentUpon>ContestListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\JoinView.xaml.cs">
       <DependentUpon>JoinView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +112,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContestDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContestListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\JoinView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

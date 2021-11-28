@@ -35,6 +35,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <!--ListItemStyle-->
         <Style TargetType="ListViewItem" x:Key="ListItemStyle" >
             <Setter Property="Margin" Value="3"/>

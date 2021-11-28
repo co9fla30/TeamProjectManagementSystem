@@ -5,7 +5,99 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontFamily="Microsoft YaHei UI Light"
+             >
+    <UserControl.Resources>
+        <!--ListViewStyle-->
+        <Style TargetType="ListView">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Margin="5" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--ToDoListItemStyle-->
+        <Style TargetType="ListViewItem" x:Key="ToDoListViewItemStyle">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Margin="5,0,0,0" Width="18"/>
+                            <ContentPresenter Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--ListItemStyle-->
+        <Style TargetType="ListViewItem" x:Key="ListItemStyle" >
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Grid Height="390">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel>
+                                <Border
+                        Margin="10"
+                        CornerRadius="10"
+                        Background="#FFF9F7F6" 
+                        BorderBrush="LightGray" 
+                        BorderThickness="1"
+                        >
+                                    <TextBlock 
+                            Text="팀 이름 1" 
+                            TextAlignment="Center" 
+                            VerticalAlignment="Center"
+                            />
+                                </Border>
+
+                                <ListView HorizontalAlignment="Left"  Margin="5,0,0,0" VerticalAlignment="Top"  BorderBrush="{x:Null}" Height="150" Width="179" >
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ListView.ItemContainerStyle>
+                                        <StaticResourceExtension 
+                                          ResourceKey="ToDoListViewItemStyle" 
+                                          />
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="ppt 수정" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListItem/>
+                                    <ListItem/>
+                                    <ListItem/>
+                                    <ListItem/>
+                                    <ListItem/>
+                                    <ListItem/>
+                                    <ListItem/>
+                                </ListView>
+
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
@@ -17,7 +109,26 @@
             </Menu>
         </DockPanel>
         <Grid >
+            <ListView Height="401" Background="{x:Null}" 
+                BorderBrush="{x:Null}" Margin="0,0,1,0" 
+                 >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
+                <ListView.ItemContainerStyle>
+                    <StaticResourceExtension 
+                        ResourceKey="ListItemStyle" 
+                        />
+                </ListView.ItemContainerStyle>
+
+                <ListItem />
+                <ListItem />
+                <ListItem />
+                <ListItem />
+            </ListView>
         </Grid>
     </DockPanel>
 </UserControl>
