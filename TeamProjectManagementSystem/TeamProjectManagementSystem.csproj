@@ -56,13 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Contest.cs" />
     <Compile Include="Model\GroupListInfo.cs" />
     <Compile Include="Model\MemoOrSchedule.cs" />
+    <Compile Include="Model\MySQL2.cs" />
     <Compile Include="Model\Progress.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\MySQL.cs" />
     <Compile Include="Model\TeamMember.cs" />
     <Compile Include="Model\ToDo.cs" />
+    <Compile Include="ViewModel\ContestDetailViewModel.cs" />
+    <Compile Include="ViewModel\ContestListViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\Notifier.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -71,6 +75,9 @@
     <Compile Include="ViewModel\TeamViewModel.cs" />
     <Compile Include="View\ChatView.xaml.cs">
       <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContestAddView.xaml.cs">
+      <DependentUpon>ContestAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ContestDetailView.xaml.cs">
       <DependentUpon>ContestDetailView.xaml</DependentUpon>
@@ -127,6 +134,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContestAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

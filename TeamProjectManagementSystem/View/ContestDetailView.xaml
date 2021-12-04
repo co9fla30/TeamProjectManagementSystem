@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+             xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="Microsoft YaHei UI Light">
+    <UserControl.DataContext>
+        <vm:ContestDetailViewModel/>
+    </UserControl.DataContext>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
@@ -18,7 +21,7 @@
             </Menu>
         </DockPanel>
         <Grid DockPanel.Dock="Left" Width="600">
-            <TextBlock Text="공모전 이름1" FontSize="18" HorizontalAlignment="Left" Margin="40,40,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock Text="{Binding ContestInfo.Title}"  FontSize="18" HorizontalAlignment="Left" Margin="40,40,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold"/>
             
             <Image HorizontalAlignment="Left" Height="300" Width="230" Margin="40,85,0,0" VerticalAlignment="Top"/>
             
@@ -27,12 +30,15 @@
             <TextBlock HorizontalAlignment="Left" Margin="290,185,0,0" TextWrapping="Wrap" Text="주제" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Left" Margin="290,235,0,0" TextWrapping="Wrap" Text="주최" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Left" Margin="290,285,0,0" TextWrapping="Wrap" Text="홈페이지" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
-
-            <TextBlock HorizontalAlignment="Left" Margin="370,85,0,0" TextWrapping="Wrap" Text="2021-02-01 ~ 2021-05-14" VerticalAlignment="Top" />
-            <TextBlock HorizontalAlignment="Left" Margin="370,135,0,0" TextWrapping="Wrap" Text="대학생" VerticalAlignment="Top"  />
-            <TextBlock HorizontalAlignment="Left" Margin="370,185,0,0" TextWrapping="Wrap" Text="공모전 이름 1의 주제" VerticalAlignment="Top"  />
-            <TextBlock HorizontalAlignment="Left" Margin="370,235,0,0" TextWrapping="Wrap" Text="공모전 주최" VerticalAlignment="Top"  />
-            <TextBlock HorizontalAlignment="Left" Margin="370,285,0,0" TextWrapping="Wrap" Text="www.youngin.ac.kr" VerticalAlignment="Top"  />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="370,85,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.StartDate}" VerticalAlignment="Top" />
+                <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="~" VerticalAlignment="Top" />
+                <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.EndDate}" VerticalAlignment="Top" />
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Left" Margin="370,135,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Entry}" VerticalAlignment="Top"  />
+            <TextBlock HorizontalAlignment="Left" Margin="370,185,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Theme}" VerticalAlignment="Top"  />
+            <TextBlock HorizontalAlignment="Left" Margin="370,235,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Host}" VerticalAlignment="Top"  />
+            <TextBlock HorizontalAlignment="Left" Margin="370,285,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Site}" VerticalAlignment="Top"  />
 
 
         </Grid>

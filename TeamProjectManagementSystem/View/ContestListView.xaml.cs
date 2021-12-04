@@ -24,5 +24,17 @@ namespace TeamProjectManagementSystem.View
         {
             InitializeComponent();
         }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("./View/ContestDetailView.xaml", UriKind.Relative));
+        }
+
+        private void Border_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("./View/ContestAddView.xaml", UriKind.Relative));
+        }
     }
 }
