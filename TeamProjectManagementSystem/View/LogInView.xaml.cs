@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamProjectManagementSystem.Model;
 
 namespace TeamProjectManagementSystem.View
 {
@@ -20,9 +21,29 @@ namespace TeamProjectManagementSystem.View
     /// </summary>
     public partial class Page1 : Page
     {
+        public static string loginID;
+        public static string loginUserName;
+
         public Page1()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (enteredId.Text == new MySQL().Login(enteredId.Text, enteredPwd.Password))
+            {
+                loginID = enteredId.Text;
+                loginUserName = new MySQL().FindUser(loginID);
+                NavigationService.Navigate(new Uri("./View/TeamListView.xaml", UriKind.Relative));
+            }
+            else
+                MessageBox.Show("아이디/비밀번호를 다시 확인해주세요.");           
+        }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/JoinView.xaml", UriKind.Relative));
         }
     }
 }

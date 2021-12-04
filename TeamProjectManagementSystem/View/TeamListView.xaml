@@ -3,12 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+      xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TeamListView"
       FontFamily="Microsoft YaHei UI Light" 
       >
+    <Page.DataContext>
+        <vm:TeamListViewModel/>
+    </Page.DataContext>
     <Page.Resources>
         <!--ListViewStyle-->
         <Style TargetType="ListView">
@@ -39,7 +42,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <Border
+                            <!--<Border
                                 Grid.Column="0"
                                 Margin="10"
                                 CornerRadius="10"
@@ -48,22 +51,23 @@
                                 BorderThickness="1"
                                 >
                                 <TextBlock 
-                                    Text="팀 이름 1" 
+                                    Text="팀 이름1" 
                                     TextAlignment="Center" 
                                     VerticalAlignment="Center"
-                                    />
-                            </Border>
-
+                                    >
+                                </TextBlock>
+                            </Border>-->
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </Page.Resources>
+
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
-                <MenuItem Header="팀" />
+                <MenuItem Header="팀"/>
                 <MenuItem Header="할 일" />
                 <MenuItem Header="채팅" />
                 <MenuItem Header="공모전" />
@@ -72,6 +76,10 @@
         </DockPanel>
 
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="31*"/>
+                <ColumnDefinition Width="9*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="16*"/>
                 <RowDefinition Height="199*"/>
@@ -83,17 +91,17 @@
                 CornerRadius="5"
                 Background="#FFF9F7F6" 
                 BorderBrush="LightGray" 
-                BorderThickness="1" >
-                <TextBlock 
+                BorderThickness="1" PreviewMouseDown="Border_PreviewMouseDown" >
+                <TextBlock
                     Text="팀 추가" 
                     TextAlignment="Center" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"/>
             </Border>
 
-            <StackPanel Grid.Row="1" Margin="0,10,0,0">
-                <ListView Height="351" Background="{x:Null}" 
-                                    BorderBrush="{x:Null}" 
+            <StackPanel Grid.Row="1" Margin="0,10,0,0" Grid.ColumnSpan="2">
+                <ListView ItemsSource="{Binding GroupList}" SelectedItem="{Binding SelectedGroup}" Height="351" Background="{x:Null}" 
+                                    BorderBrush="{x:Null}"
                                     >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -101,21 +109,32 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
-                    <ListView.ItemContainerStyle>
+                    <!--<ListView.ItemContainerStyle>
                         <StaticResourceExtension 
                                           ResourceKey="TeamListItemStyle" 
                                           />
-                    </ListView.ItemContainerStyle>
-
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
-                    <ListItem />
+                    </ListView.ItemContainerStyle>-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <Border
+                                Grid.Column="0"
+                                Margin="10"
+                                CornerRadius="10"
+                                Background="#FFF9F7F6" 
+                                BorderBrush="LightGray" 
+                                BorderThickness="1" MouseDown="Border_MouseDown"
+                                >
+                                <TextBlock
+                                    Text="{Binding team_Name}" 
+                                    TextAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    >
+                                </TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
-
-
             </StackPanel>
         </Grid>
-
     </DockPanel>
 </Page>

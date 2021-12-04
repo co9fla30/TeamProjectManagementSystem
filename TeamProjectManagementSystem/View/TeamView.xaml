@@ -3,12 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+      xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TeamView"
       FontFamily="Microsoft YaHei UI Light" 
       >
+    <Page.DataContext>
+        <vm:TeamViewModel/>
+    </Page.DataContext>
     <Page.Resources>
         <!--ListViewStyle-->
         <Style TargetType="ListView">
@@ -27,12 +30,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="5,0,0,0" Width="18"/>
-                            <TextBlock Text="2021-11-01" Margin="5,0,0,0"/>
-                            <TextBlock Text="스토리보드 제출" Margin="5,0,0,0"/>
-                            <Button Content="X" Margin="10,0,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-                        </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -44,21 +41,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <Border 
-                                    Height="50"
-                                    Width="230"
-                                    CornerRadius="5"
-                                    Background="#FFF9F7F6" 
-                                    BorderBrush="LightGray" 
-                                    BorderThickness="1">
-                            <Grid>
-                                <TextBlock HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top"/>
-                                <TextBlock HorizontalAlignment="Left"  Margin="50,5,0,0" TextWrapping="Wrap" Text="2021-11-25" VerticalAlignment="Top" />
-                                <TextBlock HorizontalAlignment="Left" Margin="5,22,0,0" TextWrapping="Wrap" Text="게시판에 새 글이 올라왔습니다." VerticalAlignment="Top" />
-                                <Button Content="X" HorizontalAlignment="Left"  Margin="205,3,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-
-                            </Grid>
-                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -70,13 +52,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <Grid>
-                            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="스토리보드, 디자인" VerticalAlignment="Top" />
-                            <ProgressBar HorizontalAlignment="Left" Margin="5,20,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
-                            <TextBlock HorizontalAlignment="Left" Margin="230,20,0,0" TextWrapping="Wrap" Text="55%" VerticalAlignment="Top"/>
-
-                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -98,8 +73,8 @@
                 <DockPanel DockPanel.Dock="Left" Width="100" Background="#F5F1F0">
                     <StackPanel Height="200">
                         <TextBlock Text="홈" Margin="0,20,0,0" TextAlignment="Center" FontSize="16"/>
-                        <TextBlock Text="게시판" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
-                        <TextBlock Text="할 일" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
+                        <TextBlock Text="게시판" Margin="0,30,0,0" TextAlignment="Center" FontSize="16" MouseDown="TextBlock_MouseDown"/>
+                        <TextBlock Text="할 일" Margin="0,30,0,0" TextAlignment="Center" FontSize="16" MouseDown="TextBlock_MouseDown_1"/>
                     </StackPanel>
 
                 </DockPanel>
@@ -121,8 +96,7 @@
                             Margin="10"
                                    />
                         <TextBlock 
-                            Text="김은화 교수님 프로젝트 입니다. 팀 프로젝트와 공모전을 체계적으로 관리할 수 있는 프로그램입니다." 
-                            
+                            Text="{Binding Intro}"       
                             TextWrapping="WrapWithOverflow" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
@@ -147,10 +121,10 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="120"/>
                             </Grid.RowDefinitions>
-                            <TextBox HorizontalAlignment="Left"  Margin="30,18,0,0" TextWrapping="Wrap" Text="메모 입력" VerticalAlignment="Top" Width="170" Height="18"/>
-                            <Button Content="추가" Style="{StaticResource buttonStyle}" Margin="215,18,30.4,0" VerticalAlignment="Top" Height="19" />
+                            <TextBox HorizontalAlignment="Left"  Margin="30,18,0,0" TextWrapping="Wrap" Text="{Binding NewMemo}" VerticalAlignment="Top" Width="170" Height="18"/>
+                            <Button Command = "{Binding AddMemoCommand}" Content="추가" Style="{StaticResource buttonStyle}" Margin="215,18,30.4,0" VerticalAlignment="Top" Height="19" />
                             <StackPanel Grid.Row="1">
-                                <ListView Height="107" Background="{x:Null}" 
+                                <ListView x:Name="memo" ItemsSource="{Binding Memos}" Height="107" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" Margin="0,0,0.4,0" 
                                     >
                                     <ItemsControl.ItemsPanel>
@@ -158,33 +132,31 @@
                                             <StackPanel Orientation="Vertical"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
-
-                                    <ListView.ItemContainerStyle>
+                                    <!--<ListView.ItemContainerStyle>
                                         <StaticResourceExtension 
                                           ResourceKey="SimpleMemoListItemStyle" 
                                           />
-                                    </ListView.ItemContainerStyle>
-
-                                    <ListItem />
-                                    <ListItem />
-                                    <ListItem />
-                                    <ListItem />
-                                </ListView>
-                                <!--<Border Margin="10"
+                                    </ListView.ItemContainerStyle>-->
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Border 
                                     Height="50"
+                                    Width="230"
                                     CornerRadius="5"
                                     Background="#FFF9F7F6" 
                                     BorderBrush="LightGray" 
                                     BorderThickness="1">
-                                    <Grid>
-                                        <TextBlock HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="김채림" VerticalAlignment="Top"/>
-                                        <TextBlock HorizontalAlignment="Left"  Margin="50,5,0,0" TextWrapping="Wrap" Text="2021-11-25" VerticalAlignment="Top" />
-                                        <TextBlock HorizontalAlignment="Left" Margin="5,22,0,0" TextWrapping="Wrap" Text="게시판에 새 글이 올라왔습니다." VerticalAlignment="Top" />
-                                        <Button Content="X" HorizontalAlignment="Left"  Margin="261,3,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-
-                                    </Grid>
-                                </Border>-->
-
+                                                </Border>
+                                                <TextBlock HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top"/>
+                                                <TextBlock HorizontalAlignment="Left"  Margin="50,5,0,0" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" />
+                                                <TextBlock HorizontalAlignment="Left" Margin="5,22,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" />
+                                                <Button Command="{Binding ElementName=memo, Path=DataContext.DeleteMemoCommand}" CommandParameter="{Binding no}"
+                                                Content="X" HorizontalAlignment="Left"  Margin="205,3,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </StackPanel>
                         </Grid>
                     </DockPanel>
@@ -196,7 +168,7 @@
                             VerticalAlignment="Center"
                             Margin="10"/>
                         <StackPanel Grid.Row="1">
-                            <ListView Height="150" Background="{x:Null}" 
+                            <ListView ItemsSource="{Binding Progresses}" Height="150" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" Margin="0,0,0.6,0" 
                                     >
                                 <ItemsControl.ItemsPanel>
@@ -205,21 +177,23 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
 
-                                <ListView.ItemContainerStyle>
+                                <!--<ListView.ItemContainerStyle>
                                     <StaticResourceExtension 
                                           ResourceKey="ProgressListItemStyle" 
                                           />
-                                </ListView.ItemContainerStyle>
-
-                                <ListItem />
-                                <ListItem />
-                                <ListItem />
-                                <ListItem />
+                                </ListView.ItemContainerStyle>-->
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top" FontWeight="Bold"/>
+                                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="{Binding toDoList}" VerticalAlignment="Top" />
+                                            <ProgressBar HorizontalAlignment="Left" Margin="5,20,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="{Binding percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                                            <TextBlock HorizontalAlignment="Left" Margin="230,20,0,0" TextWrapping="Wrap" Text="{Binding percentage}" VerticalAlignment="Top"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
                             </ListView>
-
-
                         </StackPanel>
-
                     </StackPanel>
 
                     <DockPanel Grid.Row="1" Grid.Column="1" Margin="20">
@@ -234,7 +208,7 @@
                                 <RowDefinition/>
                                 <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
-                            <DatePicker HorizontalAlignment="Left" Margin="20,18,0,0" VerticalAlignment="Top" Width="92">
+                            <DatePicker SelectedDate="{Binding SelectedDate}" HorizontalAlignment="Left" Margin="20,18,0,0" VerticalAlignment="Top" Width="92">
                                 <DatePicker.BorderBrush>
                                     <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
                                         <GradientStop Color="#FFF9F7F6" Offset="0"/>
@@ -245,11 +219,11 @@
                                 </DatePicker.BorderBrush>
                             </DatePicker>
 
-                            <TextBox Height="23" HorizontalAlignment="Left"  Margin="117,18,0,0" TextWrapping="Wrap" Text="일정 입력" VerticalAlignment="Top" Width="123" />
-                            <Button Height="23" Content="추가" Style="{StaticResource buttonStyle}"  Margin="245,18,30.6,0" VerticalAlignment="Top" />
+                            <TextBox Height="23" HorizontalAlignment="Left"  Margin="117,18,0,0" TextWrapping="Wrap" Text="{Binding NewSchedule}" VerticalAlignment="Top" Width="123" />
+                            <Button Command="{Binding AddScheduleCommand}" Height="23" Content="추가" Style="{StaticResource buttonStyle}"  Margin="245,18,30.6,0" VerticalAlignment="Top" />
 
                             <StackPanel Grid.Row="1">
-                                <ListView Height="90" Margin="10" Background="{x:Null}" 
+                                <ListView x:Name="schedule" ItemsSource="{Binding Schedules}" Height="90" Margin="10" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" 
                                     >
                                     <ItemsControl.ItemsPanel>
@@ -258,22 +232,26 @@
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
 
-                                    <ListView.ItemContainerStyle>
+                                    <!--<ListView.ItemContainerStyle>
                                         <StaticResourceExtension 
                                           ResourceKey="PlanListItemStyle" 
                                           />
-                                    </ListView.ItemContainerStyle>
-
-                                    <ListItem />
-                                    <ListItem />
-                                    <ListItem />
-                                    <ListItem />
+                                    </ListView.ItemContainerStyle>-->
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding date}" Margin="5,0,0,0"/>
+                                                <TextBlock Text="{Binding text}" Margin="5,0,0,0"/>
+                                                <Button 
+                                                    Command="{Binding ElementName=schedule, Path=DataContext.DeleteScheduleCommand}" CommandParameter="{Binding no}"
+                                                    Content="X" Margin="10,0,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-
                         </Grid>
                     </DockPanel>
-
                 </Grid>
             </DockPanel>
         </Grid>

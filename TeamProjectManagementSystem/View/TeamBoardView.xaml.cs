@@ -18,11 +18,16 @@ namespace TeamProjectManagementSystem.View
     /// <summary>
     /// TeamBoardView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TeamBoardView : UserControl
+    public partial class TeamBoardView : Page
     {
         public TeamBoardView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/TeamBoardAddView.xaml", UriKind.Relative));
         }
     }
 }

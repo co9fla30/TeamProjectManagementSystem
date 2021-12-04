@@ -19,12 +19,12 @@
                 <TextBlock Text="Sign in" Margin="30,20,30,20" Foreground="#BDBDBC" FontSize="24" TextAlignment="Center" FontWeight="Bold" />
                 <StackPanel Height="210" >
                     <TextBlock Text="ID" Margin="30,10,30,0" ></TextBlock>
-                    <TextBox Margin="30,10,30,0"/>
+                    <TextBox x:Name="enteredId" Margin="30,10,30,0"/>
                     <TextBlock Text="PassWord" Margin="30,10,30,0"></TextBlock>
-                    <PasswordBox  Margin="30,10,30,0" PasswordChar="*"/>
+                    <PasswordBox x:Name="enteredPwd" Margin="30,10,30,0" PasswordChar="*"/>
 
-                    <Button Content="로그인" Margin="30,20,30,0" Style="{StaticResource buttonStyle}"/>
-                    <TextBlock Text="회원가입" Margin="30,10,30,0" TextAlignment="Right" FontFamily="Segoe UI Symbol"></TextBlock>
+                    <Button Content="로그인" Margin="30,20,30,0" Style="{StaticResource buttonStyle}" Click="Button_Click"/>
+                    <TextBlock Text="회원가입" Margin="30,10,30,0" TextAlignment="Right" FontFamily="Segoe UI Symbol" PreviewMouseDown="TextBlock_PreviewMouseDown"></TextBlock>
                 </StackPanel>
             </StackPanel>
 

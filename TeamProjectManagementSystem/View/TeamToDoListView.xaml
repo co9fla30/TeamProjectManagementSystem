@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+             xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="Microsoft YaHei UI Light" 
              >
+    <UserControl.DataContext>
+        <vm:TeamToDoListViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
 
         <!--ListViewStyle-->
@@ -44,7 +47,7 @@
                     <ControlTemplate TargetType="ListViewItem">
                         <StackPanel Orientation="Horizontal">
                             <Grid Height="143"  >
-                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="팀원 1" Width="50" Margin="10,10,0,114"/>
+                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="sdfd" Width="50" Margin="10,10,0,114"/>
                                 <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
                                 <TextBox HorizontalAlignment="Left" Margin="230,30,0,0" TextWrapping="Wrap" Text="55" VerticalAlignment="Top"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="250,30,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top"/>
@@ -104,55 +107,33 @@
                 </DockPanel>
                 <Grid>
                     <StackPanel>
-                        <!--<Grid Height="143"  >
-                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="팀원 1" Width="50" Margin="10,10,0,114"/>
-                            <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
-                            <TextBox HorizontalAlignment="Left" Margin="230,30,0,0" TextWrapping="Wrap" Text="55" VerticalAlignment="Top"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="250,30,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top"/>
-                            
-                            <ListView HorizontalAlignment="Left" Height="81" Margin="5,52,0,0" VerticalAlignment="Top" Width="584" BorderBrush="{x:Null}" >
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ListView.ItemContainerStyle>
-                                    <StaticResourceExtension 
-                                          ResourceKey="ToDoListViewItemStyle" 
-                                          />
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="ppt 수정" />
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                                <ListItem/>
-                                <ListItem/>
-                                <ListItem/>
-                                <ListItem/>
-                            </ListView>
-                            <Button Content="추가"
-                                Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="596,115,0,0" VerticalAlignment="Top" Width="75"/>
-                        </Grid>-->
-                        <ListView Height="401" Background="{x:Null}" 
+                        <ListView ItemsSource="{Binding TeamMember}" Height="401" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" Margin="0,0,1,0" 
                                     >
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-
-                            <ListView.ItemContainerStyle>
-                                <StaticResourceExtension 
-                                          ResourceKey="ListItemStyle" 
-                                          />
-                            </ListView.ItemContainerStyle>
-
-                            <ListItem />
-                            <ListItem />
-                            <ListItem />
-                            <ListItem />
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Height="143"  >
+                                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding UserId}" Width="50" Margin="10,10,0,114"/>
+                                            <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="{Binding Percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                                            <TextBox HorizontalAlignment="Left" Margin="230,30,0,0" TextWrapping="Wrap" Text="{Binding Percentage}" VerticalAlignment="Top"/>
+                                            <TextBlock HorizontalAlignment="Left" Margin="250,30,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top"/>
+                                            <Button Content="수정" Margin="265,30,340,96" Style="{StaticResource buttonStyle}"/>
+                                            <ListBox ItemsSource="{Binding }" HorizontalAlignment="Left" Height="81" Margin="5,52,0,0" VerticalAlignment="Top" Width="550" BorderBrush="{x:Null}" >
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <TextBlock Text="ppt 수정" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                            <Button Content="추가"
+                                Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="570,115,0,0" VerticalAlignment="Top" Width="75"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </StackPanel>
                 </Grid>

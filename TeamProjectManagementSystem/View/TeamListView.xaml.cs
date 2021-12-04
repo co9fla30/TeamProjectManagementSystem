@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamProjectManagementSystem.Model;
 
 namespace TeamProjectManagementSystem.View
 {
@@ -20,9 +22,20 @@ namespace TeamProjectManagementSystem.View
     /// </summary>
     public partial class TeamListView : Page
     {
+        
         public TeamListView()
         {
             InitializeComponent();
+        }
+
+        private void Border_PreviewMouseDown(object sender, MouseButtonEventArgs e) // 팀 추가
+        {
+            NavigationService.Navigate(new Uri("./View/TeamAddView.xaml", UriKind.Relative));
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/TeamView.xaml", UriKind.Relative));
         }
     }
 }
