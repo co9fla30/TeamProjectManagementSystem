@@ -37,7 +37,10 @@ namespace TeamProjectManagementSystem.ViewModel
         public int Percent
         {
             get { return percent; }
-            set { percent = value; }
+            set { 
+                percent = value;
+                OnPropertyChanged("Percent");
+            }
         }
 
 
@@ -72,7 +75,8 @@ namespace TeamProjectManagementSystem.ViewModel
         public void AddToDo(object obj)
         {
             new MySQL().AddToDo((string)obj, NewToDo);
-            Progresses = new MySQL().GetProgress();
+            NewToDo = "";
+            Progresses = new MySQL().GetProgress();           
         }
 
         public void DeleteToDo(object obj)

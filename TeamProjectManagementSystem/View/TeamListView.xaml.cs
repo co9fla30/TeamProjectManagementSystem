@@ -37,5 +37,20 @@ namespace TeamProjectManagementSystem.View
         {
             NavigationService.Navigate(new Uri("./View/TeamView.xaml", UriKind.Relative));
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/MyToDoListView.xaml", UriKind.Relative));
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/ContestListView.xaml", UriKind.Relative));
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/LogInView.xaml", UriKind.Relative));
+        }
     }
 }

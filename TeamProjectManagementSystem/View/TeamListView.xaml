@@ -30,34 +30,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <Grid Height="330" Width="748" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <!--<Border
-                                Grid.Column="0"
-                                Margin="10"
-                                CornerRadius="10"
-                                Background="#FFF9F7F6" 
-                                BorderBrush="LightGray" 
-                                BorderThickness="1"
-                                >
-                                <TextBlock 
-                                    Text="팀 이름1" 
-                                    TextAlignment="Center" 
-                                    VerticalAlignment="Center"
-                                    >
-                                </TextBlock>
-                            </Border>-->
-                        </Grid>
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -68,10 +41,10 @@
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
                 <MenuItem Header="팀"/>
-                <MenuItem Header="할 일" />
+                <MenuItem Header="할 일" Click="MenuItem_Click" />
                 <MenuItem Header="채팅" />
-                <MenuItem Header="공모전" />
-                <MenuItem Header="로그아웃" />
+                <MenuItem Header="공모전" Click="MenuItem_Click_1" />
+                <MenuItem Header="로그아웃" Click="MenuItem_Click_2" />
             </Menu>
         </DockPanel>
 
@@ -108,12 +81,6 @@
                             <StackPanel Orientation="Vertical"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
-                    <!--<ListView.ItemContainerStyle>
-                        <StaticResourceExtension 
-                                          ResourceKey="TeamListItemStyle" 
-                                          />
-                    </ListView.ItemContainerStyle>-->
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <Border

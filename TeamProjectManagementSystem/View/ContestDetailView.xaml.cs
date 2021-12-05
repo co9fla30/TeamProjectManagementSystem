@@ -24,5 +24,11 @@ namespace TeamProjectManagementSystem.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("./View/ContestTeamPostAddView.xaml", UriKind.Relative));
+        }
     }
 }

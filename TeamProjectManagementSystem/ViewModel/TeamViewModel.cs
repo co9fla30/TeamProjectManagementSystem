@@ -109,16 +109,21 @@ namespace TeamProjectManagementSystem.ViewModel
 
         public RelayCommand DeleteScheduleCommand { get; set; }
 
+        public RelayCommand UpdateIntroCommand { get; set; }
+
         public TeamViewModel()
         {
             Intro = new MySQL().GetIntro();
             Memos = new MySQL().GetMemo();
             Schedules = new MySQL().GetSchedule();
             Progresses = new MySQL().GetProgress();
+
             AddMemoCommand = new RelayCommand(AddMemo);
             AddScheduleCommand = new RelayCommand(AddSchedule);
             DeleteMemoCommand = new RelayCommand(DeleteMemo);
             DeleteScheduleCommand = new RelayCommand(DeleteSchedule);
+            UpdateIntroCommand = new RelayCommand(UpdateIntro);
+
             SelectedDate = DateTime.Now;
         }
 
@@ -144,6 +149,12 @@ namespace TeamProjectManagementSystem.ViewModel
         {
             new MySQL().DeleteMemoOrSchedule((int)obj);
             Schedules = new MySQL().GetSchedule();
+        }
+
+        public void UpdateIntro(object obj)
+        {
+            new MySQL().UpdateIntro(Intro);
+            Intro = new MySQL().GetIntro();
         }
     }
 }

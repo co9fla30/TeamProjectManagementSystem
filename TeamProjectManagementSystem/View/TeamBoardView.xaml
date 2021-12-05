@@ -85,12 +85,15 @@
                         </ListView>
                     </Grid>
                     <Grid>
-                        <ComboBox HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="85" >
-                            <ComboBoxItem Content="제목" />
-                            <ComboBoxItem Content="작성자" />
+                        <ComboBox ItemsSource="{Binding SearchWays}" SelectedItem="{Binding SelectedWay}" HorizontalAlignment="Left"  Margin="10,10,0,0" VerticalAlignment="Top" Width="85" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding way}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="105,10,0,0" TextWrapping="Wrap" Text="검색어를 입력해주세요." VerticalAlignment="Top" Width="150"/>
-                        <Button Content="검색" Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="50" Height="23" />
+                        <TextBox Text="{Binding SearchText}" HorizontalAlignment="Left" Height="23" Margin="105,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                        <Button Command="{Binding SearchBoardCommand}" Content="검색" Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="50" Height="23" />
                         <Button Content="게시글 추가" Style="{StaticResource buttonStyle}"  Margin="585,10,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click"/>
                     </Grid>
                 </DockPanel>

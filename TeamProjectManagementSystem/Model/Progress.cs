@@ -11,6 +11,7 @@ namespace TeamProjectManagementSystem.Model
     {
         public string user_Id { get; set; }
         public string user_NameAndId { get; set; }
+        public string team_name { get; set; }
         public string toDoListOneline { get; set; }
         public int percentage { get; set; }
         public ObservableCollection<ToDoList> toDoLists { get; set; }
