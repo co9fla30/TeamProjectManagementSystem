@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeamProjectManagementSystem.View" xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel" xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="Microsoft YaHei UI Light" 
              >
-
+    <Page.DataContext>
+        <vm:TeamBoardViewModel/>
+    </Page.DataContext>
     <!--<UserControl.Resources>
     <Style x:Key="CenterAlignedColumn" TargetType="{x:Type TextBlock}">
         <Setter Property="TextAlignment" Value="Center" />
@@ -21,14 +23,14 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Margin" Value="3,0,3,0"/>
-            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+            <!--<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />-->
             <Style.Triggers>
                 <MultiTrigger>
-                    <MultiTrigger.Conditions>
+                    <!--<MultiTrigger.Conditions>
                         <Condition Property="ItemsControl.AlternationIndex" Value="1" />
                         <Condition Property="IsSelected" Value="False" />
                         <Condition Property="IsMouseOver" Value="False" />
-                    </MultiTrigger.Conditions>
+                    </MultiTrigger.Conditions>-->
                     <Setter Property="Background" Value="#EEEEEEEE" />
                 </MultiTrigger>
             </Style.Triggers>
@@ -57,22 +59,24 @@
                 </DockPanel>
                 <DockPanel>
                     <Grid DockPanel.Dock="Top" Height="350" >
-                        <ListView 
+                        <ListView x:Name="board" ItemsSource="{Binding Board}" 
                               AlternationCount="2" 
-                              ItemContainerStyle="{StaticResource CustomerItemStyle}"
-                              
+                              ItemContainerStyle="{StaticResource CustomerItemStyle}"        
                               >
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn 
-                                        Header="제목" 
-                                        Width="450"
-                                        />
-                                    <GridViewColumn 
+                                    <GridViewColumn Header="제목" Width="450">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="{Binding title}" Command="{Binding ElementName=board, Path=DataContext.IntoBoardCommand}" CommandParameter="{Binding no}" Click="Button_Click_1"></Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding writer}"
                                         Header="작성자" 
                                         Width="100" 
                                         />
-                                    <GridViewColumn 
+                                    <GridViewColumn DisplayMemberBinding="{Binding date}"
                                         Header="작성일"
                                         Width="130"
                                         />

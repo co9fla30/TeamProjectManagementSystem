@@ -18,7 +18,7 @@ namespace TeamProjectManagementSystem.View
     /// <summary>
     /// ChatView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ChatView : UserControl
+    public partial class ChatView : Page
     {
         public ChatView()
         {

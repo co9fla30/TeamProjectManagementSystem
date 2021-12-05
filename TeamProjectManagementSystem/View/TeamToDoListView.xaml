@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TeamProjectManagementSystem.View.TeamToDoListView"
+﻿<Page x:Class="TeamProjectManagementSystem.View.TeamToDoListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,11 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="Microsoft YaHei UI Light" 
              >
-    <UserControl.DataContext>
+    <Page.DataContext>
         <vm:TeamToDoListViewModel/>
-    </UserControl.DataContext>
-    <UserControl.Resources>
-
+    </Page.DataContext>
+    <Page.Resources>
         <!--ListViewStyle-->
         <Style TargetType="ListView">
             <Setter Property="ItemsPanel">
@@ -29,61 +28,24 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Margin="5,0,0,0" Width="18"/>
-                            <ContentPresenter Margin="10,0,0,0"/>
-                            <Button Content="X" Margin="10,0,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-                        </StackPanel>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <!--ListItemStyle-->
         <Style TargetType="ListViewItem" x:Key="ListItemStyle" >
             <Setter Property="Margin" Value="3"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListViewItem">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Height="143"  >
-                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="sdfd" Width="50" Margin="10,10,0,114"/>
-                                <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="50" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
-                                <TextBox HorizontalAlignment="Left" Margin="230,30,0,0" TextWrapping="Wrap" Text="55" VerticalAlignment="Top"/>
-                                <TextBlock HorizontalAlignment="Left" Margin="250,30,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top"/>
-                                <Button Content="수정" Margin="265,30,340,96" Style="{StaticResource buttonStyle}"/>
-                                <ListView HorizontalAlignment="Left" Height="81" Margin="5,52,0,0" VerticalAlignment="Top" Width="550" BorderBrush="{x:Null}" >
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Vertical"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ListView.ItemContainerStyle>
-                                        <StaticResourceExtension 
-                                          ResourceKey="ToDoListViewItemStyle" 
-                                          />
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="ppt 수정" />
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                    <ListItem/>
-                                    <ListItem/>
-                                    <ListItem/>
-                                    <ListItem/>
-                                </ListView>
-                                <Button Content="추가"
-                                Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="570,115,0,0" VerticalAlignment="Top" Width="75"/>
-                            </Grid>
-                        </StackPanel>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-    </UserControl.Resources>
+    </Page.Resources>
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
@@ -103,32 +65,46 @@
                         <TextBlock Text="게시판" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
                         <TextBlock Text="할 일" Margin="0,30,0,0" TextAlignment="Center" FontSize="16"/>
                     </StackPanel>
-
                 </DockPanel>
                 <Grid>
                     <StackPanel>
-                        <ListView ItemsSource="{Binding TeamMember}" Height="401" Background="{x:Null}" 
+                        <ListView x:Name="lv1" ItemsSource="{Binding Progresses}" Height="401" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" Margin="0,0,1,0" 
                                     >
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Height="176">
                                         <Grid Height="143"  >
-                                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding UserId}" Width="50" Margin="10,10,0,114"/>
-                                            <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="{Binding Percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
-                                            <TextBox HorizontalAlignment="Left" Margin="230,30,0,0" TextWrapping="Wrap" Text="{Binding Percentage}" VerticalAlignment="Top"/>
-                                            <TextBlock HorizontalAlignment="Left" Margin="250,30,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top"/>
-                                            <Button Content="수정" Margin="265,30,340,96" Style="{StaticResource buttonStyle}"/>
-                                            <ListBox ItemsSource="{Binding }" HorizontalAlignment="Left" Height="81" Margin="5,52,0,0" VerticalAlignment="Top" Width="550" BorderBrush="{x:Null}" >
-                                                <ListBox.ItemTemplate>
+                                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding user_NameAndId}" Width="100" Margin="10,10,0,114"/>
+                                            <ProgressBar HorizontalAlignment="Left" Margin="5,32,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="{Binding percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                                            <TextBox HorizontalAlignment="Left" Margin="273,30,0,0" TextWrapping="Wrap" Text="{Binding DataContext.Percent, ElementName=lv1}" VerticalAlignment="Top" Width="29"/>
+                                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding percentage}" VerticalAlignment="Top" Width="27" Margin="217,32,0,0" Height="14"/>
+                                            <TextBlock HorizontalAlignment="Left" Margin="238,32,0,0" TextWrapping="Wrap" Text="%" VerticalAlignment="Top" Width="13" Height="15"/>
+                                            <Button Command="{Binding DataContext.UpdatePercentageCommand, ElementName=lv1}" CommandParameter="{Binding user_Id}" Content="수정" Margin="307,30,305,96" Style="{StaticResource buttonStyle}"/>
+                                            <ListView ItemsSource="{Binding toDoLists}" HorizontalAlignment="Left" Height="81" Margin="5,52,0,0" VerticalAlignment="Top" Width="550" BorderBrush="{x:Null}" >
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Vertical"/>
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                                <ListView.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Grid>
-                                                            <TextBlock Text="ppt 수정" />
-                                                        </Grid>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <CheckBox Command="{Binding DataContext.DoneCheckCommand, ElementName=lv1}" CommandParameter="{Binding no}" IsChecked="{Binding done}" Margin="5,0,0,0" Width="18"/>
+                                                            <TextBlock Text="{Binding text}" />
+                                                            <Button Command="{Binding DataContext.DeleteToDoCommand, ElementName=lv1}" CommandParameter="{Binding no}"
+                                                                Content="X" Margin="10,0,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
+                                                        </StackPanel>
                                                     </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
-                                            <Button Content="추가"
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                            <TextBox Text="{Binding ElementName=lv1, Path=DataContext.NewToDo}" Margin="555,90,0,33"></TextBox>
+                                            <Button Content="추가" Command="{Binding DataContext.AddToDoCommand, ElementName=lv1}" CommandParameter="{Binding user_Id}"
                                 Style="{StaticResource buttonStyle}" HorizontalAlignment="Left" Margin="570,115,0,0" VerticalAlignment="Top" Width="75"/>
                                         </Grid>
                                     </StackPanel>
@@ -140,4 +116,4 @@
             </DockPanel>
         </Grid>
     </DockPanel>
-</UserControl>
+</Page>

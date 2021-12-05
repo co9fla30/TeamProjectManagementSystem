@@ -29,5 +29,10 @@ namespace TeamProjectManagementSystem.View
         {
             NavigationService.Navigate(new Uri("./View/TeamBoardAddView.xaml", UriKind.Relative));
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("./View/TeamBoardDetailView.xaml", UriKind.Relative));
+        }
     }
 }

@@ -176,17 +176,11 @@
                                         <StackPanel Orientation="Vertical"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
-
-                                <!--<ListView.ItemContainerStyle>
-                                    <StaticResourceExtension 
-                                          ResourceKey="ProgressListItemStyle" 
-                                          />
-                                </ListView.ItemContainerStyle>-->
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top" FontWeight="Bold"/>
-                                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="{Binding toDoList}" VerticalAlignment="Top" />
+                                            <TextBlock HorizontalAlignment="Left"  Margin="50,0,0,0" TextWrapping="Wrap" Text="{Binding toDoListOneline}" VerticalAlignment="Top" />
                                             <ProgressBar HorizontalAlignment="Left" Margin="5,20,0,0"  VerticalAlignment="Top" Height="15" Width="210" Value="{Binding percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
                                             <TextBlock HorizontalAlignment="Left" Margin="230,20,0,0" TextWrapping="Wrap" Text="{Binding percentage}" VerticalAlignment="Top"/>
                                         </Grid>

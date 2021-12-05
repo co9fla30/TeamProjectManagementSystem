@@ -18,7 +18,7 @@ namespace TeamProjectManagementSystem.View
     /// <summary>
     /// TeamToDoListView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TeamToDoListView : UserControl
+    public partial class TeamToDoListView : Page
     {
         public TeamToDoListView()
         {
