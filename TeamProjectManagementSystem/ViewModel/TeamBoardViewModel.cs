@@ -70,6 +70,7 @@ namespace TeamProjectManagementSystem.ViewModel
                 new SearchWay("제목"),
                 new SearchWay("작성자")
             };
+            SelectedWay = SearchWays[0];
 
             IntoBoardCommand = new RelayCommand(IntoBoard);
 
@@ -85,10 +86,14 @@ namespace TeamProjectManagementSystem.ViewModel
 
         public void SearchBoard(object obj)
         {
-            if(SelectedWay != null)
+            if(SearchText == "")
+            {
+                Board = new MySQL().GetTeamBoardList();
+            }
+            else
             {
                 Board = new MySQL().SearchBoard(SelectedWay.way, SearchText);
-            } 
+            }
         }
     }
 }
