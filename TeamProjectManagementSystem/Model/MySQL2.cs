@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TeamProjectManagementSystem.View;
 using TeamProjectManagementSystem.ViewModel;
 
@@ -27,11 +29,18 @@ namespace TeamProjectManagementSystem.Model
 
         public void AddContest(Contest c)
         {
-            string query = "insert into contest(title, s_date, e_date, entry, theme, host, site, image) values('"
-                + c.Title + "', '" + c.StartDate + "', '" + c.EndDate + "', '" + c.Entry + "', '" + c.Theme + "', '"
-                + c.Host + "', '" + c.Site + "', '" + c.Image + "'); ";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.ExecuteNonQuery();
+            try
+            {
+                string query = "insert into contest(title, s_date, e_date, entry, theme, host, site, image) values('"
+                    + c.Title + "', '" + c.StartDate + "', '" + c.EndDate + "', '" + c.Entry + "', '" + c.Theme + "', '"
+                    + c.Host + "', '" + c.Site + "', @image); ";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@image", c.Image);
+                command.ExecuteNonQuery();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public ObservableCollection<Contest> LoadContestList()

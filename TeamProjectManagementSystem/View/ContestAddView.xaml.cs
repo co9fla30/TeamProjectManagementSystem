@@ -24,7 +24,7 @@ namespace TeamProjectManagementSystem.View
     public partial class ContestAddView : Page
     {
         Contest contest;
-
+        string imageName;
         public ContestAddView()
         {
             InitializeComponent();
@@ -46,12 +46,12 @@ namespace TeamProjectManagementSystem.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
+            FileDialog open = new OpenFileDialog();
             open.Filter = "image | *.jpg; *.png; *.jpeg";
-            if (open.ShowDialog() == true)
+            open.ShowDialog();
             {
-                
-                FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
+                imageName = open.FileName;
+                FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
                 contest.Image = new byte[fs.Length];
                 fs.Read(contest.Image, 0, Convert.ToInt32(fs.Length));
                 fs.Close();

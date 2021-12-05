@@ -28,7 +28,7 @@
         <Grid DockPanel.Dock="Left" Width="600">
             <TextBlock Text="{Binding ContestInfo.Title}"  FontSize="18" HorizontalAlignment="Left" Margin="40,40,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold"/>
             
-            <Image HorizontalAlignment="Left" Height="300" Width="230" Margin="40,85,0,0" VerticalAlignment="Top"/>
+            <Image Source="{Binding ContestInfo.Image}" HorizontalAlignment="Left" Height="300" Width="230" Margin="40,85,0,0" VerticalAlignment="Top"/>
             
             <TextBlock HorizontalAlignment="Left" Margin="290,85,0,0" TextWrapping="Wrap" Text="접수기간" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Left" Margin="290,135,0,0" TextWrapping="Wrap" Text="참가대상" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
