@@ -3,11 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+      xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ContestAddView">
-
+    <Page.DataContext>
+        <vm:ContestAddViewModel/>
+    </Page.DataContext>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="auto"/>
         <DockPanel DockPanel.Dock="Left" Width="auto"/>

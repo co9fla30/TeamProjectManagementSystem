@@ -16,19 +16,23 @@ using System.Windows.Shapes;
 namespace TeamProjectManagementSystem.View
 {
     /// <summary>
-    /// ContestDetailView.xaml에 대한 상호 작용 논리
+    /// ContestTeamPostAddView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class ContestDetailView : UserControl
+    public partial class ContestTeamPostAddView : Page
     {
-        public ContestDetailView()
+        public ContestTeamPostAddView()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("./View/ContestTeamPostAddView.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("./View/ContestDetailView.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

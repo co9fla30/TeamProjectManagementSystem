@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamProjectManagementSystem.View;
 using TeamProjectManagementSystem.ViewModel;
 
 namespace TeamProjectManagementSystem.Model
@@ -74,6 +75,44 @@ namespace TeamProjectManagementSystem.Model
             };
             reader.Close();
             return contestInfo;
+        }
+
+        public void ContestTeamPostAdd(string title, string content)
+        {
+            string query = "insert into post(contest_no, writer_id, writer_name, title, content) " +
+                "values('" + ContestListViewModel.selectedNo + "', '" + Page1.loginID + "', '"
+                + Page1.loginUserName + "', '" + title + "', '" + content + "' );";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+        }
+
+        public ObservableCollection<Board> SelectedContestPost()
+        {
+            ObservableCollection<Board> TeamPost = new ObservableCollection<Board>();
+            string query = "select * from post where contest_no=" + ContestListViewModel.selectedNo + ";";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Board b = new Board
+                {
+                    no = (int)reader[0],
+                    writer = reader[3].ToString(),
+                    title = reader[4].ToString(),
+                    content = reader[5].ToString(),
+                    date = reader[6].ToString()
+                };
+                TeamPost.Add(b);
+            }
+            reader.Close();
+            return TeamPost;
+        }
+
+        public void DeleteContestPost(int no)
+        {
+            string query = "delete from post where no='" + no + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
         }
     }
 }

@@ -70,7 +70,7 @@
                 <MenuItem Header="팀"/>
                 <MenuItem Header="할 일" />
                 <MenuItem Header="채팅" />
-                <MenuItem Header="공모전" />
+                <MenuItem Header="공모전" Click="MenuItem_Click" />
                 <MenuItem Header="로그아웃" />
             </Menu>
         </DockPanel>

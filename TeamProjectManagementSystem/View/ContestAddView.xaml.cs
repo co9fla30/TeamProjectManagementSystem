@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace TeamProjectManagementSystem.View
     public partial class ContestAddView : Page
     {
         Contest contest;
+
         public ContestAddView()
         {
             InitializeComponent();
@@ -38,16 +40,22 @@ namespace TeamProjectManagementSystem.View
             contest.Theme = theme.Text;
             contest.Host = host.Text;
             contest.Site = site.Text;
-            //contest.Image
             new MySQL2().AddContest(contest);
             NavigationService.Navigate(new Uri("./View/ContestListView.xaml", UriKind.Relative));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FileDialog open = new OpenFileDialog();
+            OpenFileDialog open = new OpenFileDialog();
             open.Filter = "image | *.jpg; *.png; *.jpeg";
-            open.ShowDialog();
+            if (open.ShowDialog() == true)
+            {
+                
+                FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
+                contest.Image = new byte[fs.Length];
+                fs.Read(contest.Image, 0, Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
         }
     }
 }
