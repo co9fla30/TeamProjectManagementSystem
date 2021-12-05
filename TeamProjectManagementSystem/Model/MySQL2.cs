@@ -110,7 +110,7 @@ namespace TeamProjectManagementSystem.Model
 
         public void DeleteContestPost(int no)
         {
-            string query = "delete from post where no='" + no + "';";
+            string query = "delete from post where no='" + no + "'and writer_id='" + Page1.loginID + "';";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.ExecuteNonQuery();
         }
