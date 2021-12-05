@@ -180,9 +180,9 @@ namespace TeamProjectManagementSystem.Model
         public ObservableCollection<Progress> GetProgress()
         {
             ObservableCollection<Progress> progresses = new ObservableCollection<Progress>();
-
             string query = "select user_id,percentage from " +
-                "team_member where(team_name = '" + TeamListViewModel.selectedTeam + "');";
+                "team_member where(team_name = '" + TeamListViewModel.selectedTeam + "');"; ;
+
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -202,6 +202,7 @@ namespace TeamProjectManagementSystem.Model
                 string query2 = "select no,text,done from " +
                 "todo where(team_name = '" + TeamListViewModel.selectedTeam + "' and " +
                 "user_id = '" + id + "') order by no desc;";
+
                 MySqlCommand command2 = new MySqlCommand(query2, connection);
                 MySqlDataReader reader2 = command2.ExecuteReader();
                 while (reader2.Read())
@@ -254,7 +255,7 @@ namespace TeamProjectManagementSystem.Model
         public ObservableCollection<Board> GetTeamBoardList()
         {
             ObservableCollection<Board> BoardList = new ObservableCollection<Board>();
-            string query = "select no, title, date, writer from teamboard user where "
+            string query = "select no, title, date, writer from teamboard where "
                + "(team_name = '" + TeamListViewModel.selectedTeam + "') order by date desc;";
             MySqlCommand command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
@@ -333,6 +334,94 @@ namespace TeamProjectManagementSystem.Model
             bool b = (bool)reader[0];
             reader.Close();
             return b;
+        }
+
+        public void UpdateIntro(string newIntro)
+        {
+            string query = "update team set intro='" + newIntro +
+                "' where name='" + TeamListViewModel.selectedTeam + "';";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+        }
+
+        public ObservableCollection<Progress> GetMyProgress()
+        {
+            ObservableCollection<Progress> progresses = new ObservableCollection<Progress>();
+            string query = "select team_name from " +
+                "team_member where(user_id = '" + Page1.loginID + "');"; ;
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                Progress progress = new Progress();
+                progress.team_name = reader[0].ToString();
+                progresses.Add(progress);
+            }
+            reader.Close();
+
+            // 할 일 목록 가져오기
+            int i = 0;
+            foreach (string team_name in progresses.Select(x => x.team_name))
+            {
+                string query2 = "select no,text,done from " +
+                "todo where(team_name = '" + team_name + "' and " +
+                "user_id = '" + Page1.loginID + "') order by no desc;";
+
+                MySqlCommand command2 = new MySqlCommand(query2, connection);
+                MySqlDataReader reader2 = command2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    ToDoList toDoList = new ToDoList
+                    {
+                        no = (int)reader2[0],
+                        text = reader2[1].ToString(),
+                        done = (bool)reader2[2]
+                    };
+                    progresses[i].toDoLists.Add(toDoList);
+                }
+                reader2.Close();
+                // 유저 이름 + 아이디 합치기
+                i++;
+            }
+            return progresses;
+        }
+
+        public ObservableCollection<Board> SearchBoard(string searchWay, string searchText)
+        {
+            ObservableCollection<Board> BoardList = new ObservableCollection<Board>();
+
+            string query = "";
+
+            if (searchWay == "제목")
+            {
+                query = "select no, title, date, writer from teamboard where "
+               + "(team_name = '" + TeamListViewModel.selectedTeam + "' and " +
+               "title = '" + searchText + "') order by date desc;";
+            }
+            else if (searchWay == "작성자")
+            {
+                query = "select no, title, date, writer from teamboard where "
+               + "(team_name = '" + TeamListViewModel.selectedTeam + "' and " +
+               "writer = '" + searchText + "') order by date desc;";
+            }
+             
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Board b = new Board
+                {
+                    no = (int)reader[0],
+                    title = reader[1].ToString(),
+                    date = reader[2].ToString(),
+                    writer = reader[3].ToString(),
+                };
+                BoardList.Add(b);
+            }
+            connection.Close();
+            return BoardList;
         }
     }
 }

@@ -60,11 +60,13 @@
     <Compile Include="Model\GroupListInfo.cs" />
     <Compile Include="Model\MemoOrSchedule.cs" />
     <Compile Include="Model\Progress.cs" />
+    <Compile Include="Model\SearchWay.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\MySQL.cs" />
     <Compile Include="Model\TeamMember.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
+    <Compile Include="ViewModel\MyToDoListViewModel.cs" />
     <Compile Include="ViewModel\Notifier.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TeamBoardAddViewModel.cs" />

@@ -68,7 +68,7 @@
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
                 <MenuItem Header="팀"/>
-                <MenuItem Header="할 일" />
+                <MenuItem Header="할 일" Click="MenuItem_Click" />
                 <MenuItem Header="채팅" />
                 <MenuItem Header="공모전" />
                 <MenuItem Header="로그아웃" />
