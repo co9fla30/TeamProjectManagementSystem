@@ -1,0 +1,34 @@
+﻿<Page x:Class="TeamProjectManagementSystem.View.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TeamProjectManagementSystem.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page1"
+      FontFamily="Microsoft YaHei UI Light" 
+      >
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Height="auto"/>
+        <DockPanel DockPanel.Dock="Left" Width="auto"/>
+        <DockPanel DockPanel.Dock="Right" Width="auto"/>
+        <DockPanel >
+            <StackPanel Width="250" Height="300">
+                <TextBlock Text="Sign in" Margin="30,20,30,20" Foreground="#BDBDBC" FontSize="24" TextAlignment="Center" FontWeight="Bold" />
+                <StackPanel Height="210" >
+                    <TextBlock Text="ID" Margin="30,10,30,0" ></TextBlock>
+                    <TextBox x:Name="enteredId" Margin="30,10,30,0"/>
+                    <TextBlock Text="PassWord" Margin="30,10,30,0"></TextBlock>
+                    <PasswordBox x:Name="enteredPwd" Margin="30,10,30,0" PasswordChar="*"/>
+
+                    <Button Content="로그인" Margin="30,20,30,0" Style="{StaticResource buttonStyle}" Click="Button_Click"/>
+                    <TextBlock Text="회원가입" Margin="30,10,30,0" TextAlignment="Right" FontFamily="Segoe UI Symbol" PreviewMouseDown="TextBlock_PreviewMouseDown"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+
+        </DockPanel>
+    </DockPanel>
+</Page>

@@ -1,0 +1,110 @@
+﻿<Page x:Class="TeamProjectManagementSystem.View.TeamListView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:TeamProjectManagementSystem.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeamListView"
+      FontFamily="Microsoft YaHei UI Light" 
+      >
+    <Page.DataContext>
+        <vm:TeamListViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <!--ListViewStyle-->
+        <Style TargetType="ListView">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Margin="5" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--TeamListItemStyle-->
+        <Style TargetType="ListViewItem" x:Key="TeamListItemStyle" >
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu FontSize="14" FontFamily="Segoe UI Symbol" Background="#FFF9F7F6">
+                <MenuItem Header="팀"/>
+                <MenuItem Header="할 일" Click="MenuItem_Click" />
+                <MenuItem Header="채팅" />
+                <MenuItem Header="공모전" Click="MenuItem_Click_1" />
+                <MenuItem Header="로그아웃" Click="MenuItem_Click_2" />
+            </Menu>
+        </DockPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                HorizontalAlignment="Left"
+                Margin="26,10,0,1.6"
+                Width="79"
+                CornerRadius="5"
+                Background="#FFF9F7F6" 
+                BorderBrush="LightGray" 
+                BorderThickness="1" PreviewMouseDown="Border_PreviewMouseDown" >
+                <TextBlock
+                    Text="팀 추가" 
+                    TextAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+            </Border>
+            <Grid Grid.Column="0" Grid.Row="1" >
+                <StackPanel>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding GroupList}" SelectedItem="{Binding SelectedGroup}" Height="355" Background="{x:Null}" 
+                                  BorderBrush="{x:Null}"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  >
+                            <ItemsControl.ItemTemplate>
+                                    <DataTemplate  >
+                                        <Border Width="160" Height="160">
+                                            <StackPanel>
+                                                <Border
+                                                Grid.Column="0"
+                                                Margin="10"
+                                                CornerRadius="10"
+                                                Background="#FFF9F7F6" 
+                                                BorderBrush="LightGray" 
+                                                BorderThickness="1" MouseDown="Border_MouseDown" Height="140" Width="140"
+                                                >
+                                                <TextBlock
+                                                    Text="{Binding team_Name}" 
+                                                    TextAlignment="Center" 
+                                                    VerticalAlignment="Center"
+                                                    />
+                                                </Border>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ListView>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Page>
