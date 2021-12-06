@@ -28,7 +28,7 @@
         <Grid DockPanel.Dock="Left" Width="600">
             <TextBlock Text="{Binding ContestInfo.Title}"  FontSize="18" HorizontalAlignment="Left" Margin="40,40,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold"/>
 
-            <Image HorizontalAlignment="Left" Height="300" Width="230" Margin="40,85,0,0" VerticalAlignment="Top"/>
+            <Image Source="{Binding ContestInfo.Image}" HorizontalAlignment="Left" Height="300" Width="230" Margin="40,85,0,0" VerticalAlignment="Top"/>
 
             <TextBlock HorizontalAlignment="Left" Margin="290,85,0,0" TextWrapping="Wrap" Text="접수기간" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Left" Margin="290,135,0,0" TextWrapping="Wrap" Text="참가대상" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
@@ -43,9 +43,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="370,135,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Entry}" VerticalAlignment="Top"  />
             <TextBlock HorizontalAlignment="Left" Margin="370,185,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Theme}" VerticalAlignment="Top"  />
             <TextBlock HorizontalAlignment="Left" Margin="370,235,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Host}" VerticalAlignment="Top"  />
-            <TextBlock HorizontalAlignment="Left" Margin="370,285,0,0" TextWrapping="Wrap"  VerticalAlignment="Top">
-                <Hyperlink NavigateUri="{Binding ContestInfo.Site}"><TextBlock Text="{Binding ContestInfo.Site}"/></Hyperlink>
-            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="370,285,0,0" TextWrapping="Wrap" Text="{Binding ContestInfo.Site}" VerticalAlignment="Top"/>
 
 
         </Grid>

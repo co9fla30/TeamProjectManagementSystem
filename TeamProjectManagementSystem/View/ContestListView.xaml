@@ -88,7 +88,7 @@
                                 BorderThickness="1" MouseDown="Border_MouseDown"
                                 >
                                 <StackPanel>
-                                    <Image Source="{Binding Image}"/>
+                                    <Image Source="{Binding Image}" Width="100" Height="100"/> 
                                     <TextBlock
                                         Text="{Binding Title}" 
                                         TextAlignment="Center" 

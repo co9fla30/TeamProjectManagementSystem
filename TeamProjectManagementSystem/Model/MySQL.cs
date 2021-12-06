@@ -13,7 +13,7 @@ namespace TeamProjectManagementSystem.Model
     class MySQL
     {
         MySqlConnection connection =
-        new MySqlConnection("Server=localhost;Database=tpms;Uid=root;Pwd=1234;");
+        new MySqlConnection("Server=localhost;Database=tpms;Uid=root;Pwd=a025763;");
 
         public MySQL()
         {
