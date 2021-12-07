@@ -1,0 +1,110 @@
+﻿<Window x:Class="TeamProjectManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeamProjectManagementSystem"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="860"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Foreground="White" FontFamily="Microsoft YaHei UI Light">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="150"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="150"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+  
+    <Grid>
+        <Grid x:Name="GridMain"  Height="50" VerticalAlignment="Top" Background="#FF183861">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+            </Grid.Effect>
+            <TextBlock Text="Team Project Management System" Margin="50,0,0,0"  FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" Foreground="#FFDADADA" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="MENU" VerticalAlignment="Center" FontSize="13"/>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+                    <StackPanel Width="150" Background="LightGray">
+                        <Button Content="Team" Click="MenuItem_Click"/>
+                        <Button Content="To-do" Click="MenuItem_Click_1"/>
+                        <Button Content="contest" Click="MenuItem_Click_3"/>
+                        <Separator/>
+                        <Button Content="Logout" Click="MenuItem_Click_4"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+                <!--<Menu FontSize="14" FontFamily="Segoe UI Symbol">
+                <MenuItem Header="팀" Click="MenuItem_Click" />
+                <MenuItem Header="할 일" Click="MenuItem_Click_1" />
+                <MenuItem Header="채팅"  />
+                <MenuItem Header="공모전" Click="MenuItem_Click_3" />
+                <MenuItem Header="로그아웃" Click="MenuItem_Click_4" />
+            </Menu>-->
+        </Grid>
+        <Grid >
+            <DockPanel>
+                <DockPanel x:Name="GridMenu" DockPanel.Dock="Left" Width="60" Background="#FF183861">
+                    <StackPanel>
+                        <Grid Height="150" Background="White" RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+                            <Button x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonClose_Click">
+                                <materialDesign:PackIcon Foreground="#FF183861" Kind="ArrowLeft" Width="25" Height="25"/>
+                            </Button>
+                            <Button x:Name="ButtonOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click" >
+                                <materialDesign:PackIcon Foreground="#FF183861" Kind="Menu" Width="25" Height="25"/>
+                            </Button>
+                        </Grid>
+
+                        <ListView x:Name="ListViewMenu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="LightBlue">
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal" MouseDown="ListViewItem_MouseDown">
+                                    <materialDesign:PackIcon Kind="ViewDashboard" VerticalAlignment="Center" Width="25" Height="25" Margin="10"/>
+                                    <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60" >
+                                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="ListViewItem_MouseDown_1">
+                                    <materialDesign:PackIcon Kind="Blackboard" VerticalAlignment="Center" Width="25" Height="25" Margin="10"/>
+                                    <TextBlock Text="Board" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem Height="60">
+                                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="ListViewItem_MouseDown_2">
+                                    <materialDesign:PackIcon Kind="Check" VerticalAlignment="Center" Width="25" Height="25" Margin="10"/>
+                                    <TextBlock Text="To-do List" VerticalAlignment="Center" Margin="20 10"/>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
+                </DockPanel>
+                <Grid Margin="0,50,0,0">
+                    <Frame x:Name="frame" Source="./View/LogInView.xaml"/>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Grid>
+    
+</Window>
