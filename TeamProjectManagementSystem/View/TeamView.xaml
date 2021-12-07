@@ -69,9 +69,12 @@
                 <RowDefinition />
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="20,0">
-                <TextBlock 
+            <Border  Width="390" Height="190" Background="White" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="20,0">
+                    <TextBlock 
                             Text="프로젝트 설명" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
@@ -79,100 +82,110 @@
                             FontFamily="Microsoft YaHei UI" FontWeight="Bold"
                             FontSize="13"
                                    />
-                <TextBox
+                    <TextBox
                             Text="{Binding Intro}" Height="120"
                             TextWrapping="WrapWithOverflow" 
                             VerticalAlignment="Center" 
                             AcceptsReturn="True"
-                            TextAlignment="Center" Margin="48,0,48,0" Background="{x:Null}" BorderBrush="#FFDADADA" SelectionBrush="#FFDEE0E2"
+                            TextAlignment="Center" Margin="40,0,40,0" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FFDEE0E2"
                             
                             />
-                <Button 
+                    <Button 
                             Command="{Binding UpdateIntroCommand}"
                             Content="수정"
                             Style="{StaticResource buttonStyle}"
                             Width="40"
                             Margin="250,10,10,0"/>
-            </StackPanel>
-
-            <DockPanel Grid.Column="0" Margin="20,0" Grid.Row="1">
-                <TextBlock 
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="0"  Grid.Row="1" Width="390" Height="192" Background="White" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <DockPanel Margin="20,0" >
+                    <TextBlock 
                             DockPanel.Dock="Top"
                             Text="간단 메모" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             FontFamily="Microsoft YaHei UI" FontWeight="Bold"
                             FontSize="13"
+                            Margin="0,10,0,0"
                                    />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition  Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox   TextWrapping="Wrap" Text="{Binding NewMemo}" VerticalAlignment="Center" Height="20" Margin="10"/>
-                        <Button Grid.Column="1" Command = "{Binding AddMemoCommand}" Content="추가" Style="{StaticResource buttonStyle}"  VerticalAlignment="Center" Height="20" Margin="10" />
-                    </Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="40"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox   TextWrapping="Wrap" Text="{Binding NewMemo}" VerticalAlignment="Center" Height="20" Margin="10"/>
+                            <Button Grid.Column="1" Command = "{Binding AddMemoCommand}" Content="추가" Style="{StaticResource buttonStyle}"  VerticalAlignment="Center" Height="20" Margin="10" />
+                        </Grid>
 
-                    <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,9.6" >
-                        <ListView x:Name="memo" ItemsSource="{Binding Memos}" Background="{x:Null}" 
+                        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,9.6" >
+                            <ListView x:Name="memo" ItemsSource="{Binding Memos}" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" 
                                     >
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <!--<ListView.ItemContainerStyle>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <!--<ListView.ItemContainerStyle>
                                         <StaticResourceExtension 
                                           ResourceKey="SimpleMemoListItemStyle" 
                                           />
                                     </ListView.ItemContainerStyle>-->
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel >
-                                        <Border 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel >
+                                            <Border 
                                                         Height="45"
                                                         Width="300"
                                                         CornerRadius="5"
-                                                        Background="White" 
-                                                        BorderBrush="LightGray" 
+                                                        Background="#FFEEEEEE" 
+                                                        BorderBrush="{x:Null}" 
                                                         BorderThickness="1"
                                                         VerticalAlignment="Center"
                                                         HorizontalAlignment="Center"
                                                         >
-                                            <StackPanel Margin="3">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="5.5*"/>
-                                                        <ColumnDefinition Width="1*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <DockPanel>
-                                                        <TextBlock DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top"/>
-                                                        <TextBlock DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Margin="5,0,0,0" />
-                                                    </DockPanel>
-                                                    <Button Grid.Column="1" Command="{Binding ElementName=memo, Path=DataContext.DeleteMemoCommand}" CommandParameter="{Binding no}"
+                                                <StackPanel Margin="3">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="5.5*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <DockPanel>
+                                                            <TextBlock DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top"/>
+                                                            <TextBlock DockPanel.Dock="Left" TextWrapping="Wrap" Text="{Binding date}" VerticalAlignment="Top" Margin="5,0,0,0" />
+                                                        </DockPanel>
+                                                        <Button Grid.Column="1" Command="{Binding ElementName=memo, Path=DataContext.DeleteMemoCommand}" CommandParameter="{Binding no}"
                                                                     Content="X" VerticalAlignment="Top" Width="18"  Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-                                                </Grid>
-                                                <DockPanel>
-                                                    <TextBlock DockPanel.Dock="Left"  Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" />
-                                                </DockPanel>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                                    </Grid>
+                                                    <DockPanel>
+                                                        <TextBlock DockPanel.Dock="Left"  Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding text}" VerticalAlignment="Top" />
+                                                    </DockPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                    </ScrollViewer>
-                </Grid>
-            </DockPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1" Margin="20,0">
-                <TextBlock 
+                        </ScrollViewer>
+                    </Grid>
+                </DockPanel>
+            </Border>
+            <Border  Width="390" Height="190" Background="White" CornerRadius="15"  Grid.Row="0" Grid.Column="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <StackPanel Margin="20,0">
+                    <TextBlock 
                             Text="진행도"
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Center" 
@@ -181,96 +194,102 @@
                             FontFamily="Microsoft YaHei UI" FontWeight="Bold"
                             FontSize="13"
                             />
-                <StackPanel Grid.Row="1">
-                    <ListView ItemsSource="{Binding Progresses}"  Background="{x:Null}" 
+                    <StackPanel Grid.Row="1">
+                        <ListView ItemsSource="{Binding Progresses}"  Background="{x:Null}" 
                                     BorderBrush="{x:Null}"  
                                     Height="150">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <DockPanel Grid.Row="0">
-                                        <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top" FontWeight="Bold"/>
-                                        <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left"  Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding toDoListOneline}" VerticalAlignment="Top" />
-                                    </DockPanel>
-                                    <DockPanel Grid.Row="1" Margin="0,5,0,0">
-                                        <ProgressBar HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" Width="290" Value="{Binding percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
-                                        <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding percentage}" VerticalAlignment="Top"/>
-                                        <TextBlock DockPanel.Dock="Left" Margin="2,0,0,0" Text="%"/>
-                                    </DockPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <DockPanel Grid.Row="0">
+                                            <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding user_NameAndId}" VerticalAlignment="Top" FontWeight="Bold"/>
+                                            <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left"  Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding toDoListOneline}" VerticalAlignment="Top" />
+                                        </DockPanel>
+                                        <DockPanel Grid.Row="1" Margin="0,5,0,0">
+                                            <ProgressBar HorizontalAlignment="Left" VerticalAlignment="Top" Height="15" Width="290" Value="{Binding percentage}" Foreground="#FFD6CFCB" BorderBrush="#FFEEEEEE" Background="#FFEEEEEE" />
+                                            <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding percentage}" VerticalAlignment="Top"/>
+                                            <TextBlock DockPanel.Dock="Left" Margin="2,0,0,0" Text="%"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-
-            <DockPanel Grid.Row="1" Grid.Column="1" Margin="20,0">
-                <TextBlock 
+            </Border>
+            <Border Grid.Column="1"  Grid.Row="1" Width="390" Height="192" Background="White" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <DockPanel Margin="20,0">
+                    <TextBlock 
                             DockPanel.Dock="Top"
                             Text="일정" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             FontFamily="Microsoft YaHei UI" FontWeight="Bold"
                             FontSize="13"
+                        Margin="0,10,0,0"
                                    />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="3*"/>
-                    </Grid.RowDefinitions>
-                    <DatePicker SelectedDate="{Binding SelectedDate}" HorizontalAlignment="Left" Margin="0,18,0,0" VerticalAlignment="Top" Width="112">
-                        <DatePicker.BorderBrush>
-                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
-                                <GradientStop Color="#FFF9F7F6" Offset="0"/>
-                                <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
-                                <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
-                                <GradientStop Color="#FFD3CDCB" Offset="1"/>
-                            </LinearGradientBrush>
-                        </DatePicker.BorderBrush>
-                    </DatePicker>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <DatePicker SelectedDate="{Binding SelectedDate}" HorizontalAlignment="Left" Margin="0,18,0,0" VerticalAlignment="Top" Width="112">
+                            <DatePicker.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                                    <GradientStop Color="#FFF9F7F6" Offset="0"/>
+                                    <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
+                                    <GradientStop Color="#FFF9F7F6" Offset="0.375"/>
+                                    <GradientStop Color="#FFD3CDCB" Offset="1"/>
+                                </LinearGradientBrush>
+                            </DatePicker.BorderBrush>
+                        </DatePicker>
 
-                    <TextBox HorizontalAlignment="Left"  Margin="117,23,0,6.8" Height="23" TextWrapping="Wrap" Text="{Binding NewSchedule}" Width="161" />
-                    <Button Command="{Binding AddScheduleCommand}" Height="23" Content="추가" Style="{StaticResource buttonStyle}"  Margin="283,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" />
+                        <TextBox HorizontalAlignment="Left"  Margin="117,18,0,6.8" Height="20" TextWrapping="Wrap" Text="{Binding NewSchedule}" Width="161" />
+                        <Button Command="{Binding AddScheduleCommand}" Height="23" Content="추가" Style="{StaticResource buttonStyle}"  Margin="283,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" />
 
-                    <StackPanel Grid.Row="1">
-                        <ListView x:Name="schedule" ItemsSource="{Binding Schedules}" Height="139" Margin="5" Background="{x:Null}" 
+                        <StackPanel Grid.Row="1">
+                            <ListView x:Name="schedule" ItemsSource="{Binding Schedules}" Height="139" Margin="5" Background="{x:Null}" 
                                     BorderBrush="{x:Null}" 
                                     >
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
 
-                            <!--<ListView.ItemContainerStyle>
+                                <!--<ListView.ItemContainerStyle>
                                         <StaticResourceExtension 
                                           ResourceKey="PlanListItemStyle" 
                                           />
                                     </ListView.ItemContainerStyle>-->
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding date}" Margin="5,0,0,0"/>
-                                        <TextBlock Text="{Binding text}" Margin="5,0,0,0"/>
-                                        <Button 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding date}" Margin="5,0,0,0"/>
+                                            <TextBlock Text="{Binding text}" Margin="5,0,0,0"/>
+                                            <Button 
                                                     Command="{Binding ElementName=schedule, Path=DataContext.DeleteScheduleCommand}" CommandParameter="{Binding no}"
                                                     Content="X" Margin="10,0,0,0" VerticalAlignment="Top" Width="18" Background="#FFFFFEFE" BorderBrush="#FFEEEEEE"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                </Grid>
-            </DockPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </Grid>
+                </DockPanel>
+            </Border>
         </Grid>
 
     </Grid>

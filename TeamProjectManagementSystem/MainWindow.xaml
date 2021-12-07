@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:TeamProjectManagementSystem"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="860"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Foreground="White" FontFamily="Microsoft YaHei UI Light">
+        Title="TPMS" Height="500" Width="860"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Foreground="White" FontFamily="Microsoft YaHei UI Light" 
+        Icon="Logo_Tpms.ico">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -36,7 +37,7 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <TextBlock Text="Team Project Management System" Margin="50,0,0,0"  FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" Foreground="#FFDADADA" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
+            <TextBlock Text="Team Project Management System" Margin="65,0,0,0"  FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" Foreground="#FFDADADA" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="MENU" VerticalAlignment="Center" FontSize="13"/>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
