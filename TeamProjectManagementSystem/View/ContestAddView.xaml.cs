@@ -29,6 +29,8 @@ namespace TeamProjectManagementSystem.View
         {
             InitializeComponent();
             contest = new Contest();
+            startDate.SelectedDate= DateTime.Now;
+            endDate.SelectedDate = DateTime.Now; ;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -40,8 +42,13 @@ namespace TeamProjectManagementSystem.View
             contest.Theme = theme.Text;
             contest.Host = host.Text;
             contest.Site = site.Text;
-            new MySQL2().AddContest(contest);
-            NavigationService.Navigate(new Uri("./View/ContestListView.xaml", UriKind.Relative));
+            if (contest.Image != null)
+            {
+                new MySQL2().AddContest(contest);
+                NavigationService.Navigate(new Uri("./View/ContestListView.xaml", UriKind.Relative));
+            }              
+            else
+                MessageBox.Show("이미지를 꼭 첨부해주세요.");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,7 +58,7 @@ namespace TeamProjectManagementSystem.View
             if (open.ShowDialog() == true)
             {
                 FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
-                contest.Image = new byte[fs.Length];
+                contest.Image = new byte[fs.Length];    
                 fs.Read(contest.Image, 0, Convert.ToInt32(fs.Length));
                 fs.Close();
             }
