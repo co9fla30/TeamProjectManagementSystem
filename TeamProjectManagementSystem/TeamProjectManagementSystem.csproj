@@ -77,7 +77,6 @@
     <Compile Include="Model\SearchWay.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\MySQL.cs" />
-    <Compile Include="Model\TeamMember.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\ContestAddViewModel.cs" />
     <Compile Include="ViewModel\ContestDetailViewModel.cs" />
